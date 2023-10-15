@@ -1,0 +1,128 @@
+#schedule-app {
+  p {
+    font-size: 1.4em;
+    margin: 0;
+    padding: 0;
+  }
+
+  hr {
+    height: auto;
+    margin: 0 0.5em 0 0;
+    border: 1px solid var(--color-background-primary);
+    border-left-width: 0.4em;
+    border-radius: 1em;
+  }
+
+  @media (hover: hover) {
+    a:hover,
+    button:hover {
+      background-color: hsla(240, 7%, 70%, 0.35);
+    }
+  }
+}
+
+.schedule {
+  background-color: var(--color-background);
+  border-radius: 0.6em;
+}
+
+.stream-schedule-times {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  box-shadow: 0 4px 8px rgb(0 0 0 / 16%), 0 0 4px rgb(0 0 0 / 16%);
+  width: 100%;
+  border-top: 1px solid rgb(173 173 184 / 35%);
+  border-right: 1px solid rgb(173 173 184 / 35%);
+  border-left: 1px solid rgb(173 173 184 / 35%);
+
+  border-top-left-radius: 0.6em;
+  border-top-right-radius: 0.6em;
+  background-color: var(--color-background-soft);
+  font-weight: bold;
+  overflow-x: hidden;
+}
+
+.hours {
+  height: 100%;
+  padding: 10px 10px 10px 1em;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  border-bottom: 0.2em solid transparent;
+
+  &.active {
+    border-bottom: 0.2em solid var(--color-background-primary);
+    background-color: var(--color-background-mute);
+  }
+}
+
+$week-days-width: 70px;
+
+.gmt {
+  text-align: center;
+  width: $week-days-width;
+}
+
+.week-td {
+  text-align: center;
+  width: $week-days-width;
+
+  .active {
+    border-right: 0.2em solid var(--color-background-primary);
+    background-color: var(--color-background-mute);
+  }
+}
+
+.stream-schedule-week {
+  border-bottom-left-radius: 0.6em;
+  border-bottom: 1px solid rgb(173 173 184 / 35%);
+  border-left: 1px solid rgb(173 173 184 / 35%);
+  -webkit-box-flex: 0;
+  flex-grow: 0;
+  flex-shrink: 0;
+  background-color: var(--color-background-soft);
+  font-weight: bold;
+
+  .weekday {
+    height: 9em;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+  }
+}
+
+.stream-schedule {
+  display: flex;
+  position: relative;
+  margin-bottom: 5em;
+  border-radius: 0.6em;
+
+  &__events {
+    border-bottom-right-radius: 0.6em;
+    position: relative;
+    width: 100%;
+    border-bottom: 1px solid rgb(173 173 184 / 35%);
+    border-right: 1px solid rgb(173 173 184 / 35%);
+    font-weight: bold;
+    overflow: hidden;
+    background-color: var(--color-background);
+  }
+}
+
+.stream-schedule-day {
+  display: flex;
+  align-items: center;
+  height: 9em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+
+  &.active {
+    background-color: var(--color-background-mute);
+  }
+}
