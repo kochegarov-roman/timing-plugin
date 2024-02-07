@@ -17,7 +17,7 @@ export interface IEventResponse {
   price: number;
   isLive?: boolean;
   viewers?: number;
-  type: 'show' | 'appointment' | 'broadcast';
+  type: "show" | "appointment" | "broadcast";
   onClickMethod?: string;
 }
 
