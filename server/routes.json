@@ -1,0 +1,4 @@
+{
+  "/events": "/events",
+  "/persons/:personId": "/persons/:personId"
+}

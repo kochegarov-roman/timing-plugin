@@ -34,16 +34,22 @@ export function generateWeekDays(_offsetWeek: number): ISelectedWeek[] {
   return days;
 }
 
+const hoursNum = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+const hoursFull = hoursNum
+  .map((a) => a + " AM")
+  .concat(hoursNum.map((a) => a + " PM"));
+
 export function generateHours(
   hoursStream: string[],
   isLive: boolean,
 ): string[] {
   let hours = [];
-  const hourStart = hoursStream.sort()[0];
-  const hourEnd = hoursStream.sort()[hoursStream.length - 1];
-  const date = dayjs().format("YYYY-MM-DD");
 
   if (hoursStream.length > 0 || hoursStream.includes("00:00:00") || isLive) {
+    const hourStart = [...hoursStream].sort()[0];
+    const hourEnd = [...hoursStream].sort()[hoursStream.length - 1];
+    const date = dayjs().format("YYYY-MM-DD");
+
     const interval = Array.from([hourStart, hourEnd]).sort();
 
     let indStart = hoursFull.indexOf(
@@ -92,11 +98,6 @@ export function getEventsByWeekDay(
 
   return [_eventsByWeekDay, extendedEvents];
 }
-
-const hoursNum = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-const hoursFull = hoursNum
-  .map((a) => a + " AM")
-  .concat(hoursNum.map((a) => a + " PM"));
 
 export const findActiveHour = (
   dividerHours: number,

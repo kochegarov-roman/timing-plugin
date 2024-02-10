@@ -50,7 +50,7 @@ const Events: FC<IEventsProps> = ({
               <div className="text stream-schedule-segment--text">
                 <p itemProp="name">
                   {event.title === "null"
-                    ? appInitInfo.performerScreenName
+                    ? appInitInfo.personScreenName
                     : event.title}
                 </p>
               </div>

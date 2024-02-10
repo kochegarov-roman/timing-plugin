@@ -1,0 +1,168 @@
+{
+  "events": [
+    {
+      "title": "Event 1",
+      "contentId": 1,
+      "description": "Description for Event 1",
+      "duration": 60,
+      "createdAt": "2022-02-06T08:00:00Z",
+      "previewImgUrl": "https://example.com/event1-preview.jpg",
+      "srcUrl": "https://example.com/event1",
+      "bought": false,
+      "price": 10,
+      "type": "show"
+    },
+    {
+      "title": "Event 2",
+      "contentId": 2,
+      "description": "Description for Event 2",
+      "duration": 45,
+      "createdAt": "2022-02-06T09:00:00Z",
+      "previewImgUrl": "https://example.com/event2-preview.jpg",
+      "srcUrl": "https://example.com/event2",
+      "bought": true,
+      "price": 5,
+      "type": "appointment"
+    },
+    {
+      "title": "Event 3",
+      "contentId": 3,
+      "description": "Description for Event 3",
+      "duration": 90,
+      "createdAt": "2024-02-06T10:00:00Z",
+      "previewImgUrl": "https://example.com/event3-preview.jpg",
+      "srcUrl": "https://example.com/event3",
+      "bought": false,
+      "price": 0,
+      "type": "broadcast",
+      "isLive": true,
+      "viewers": 50
+    },
+    {
+      "title": "Event 4",
+      "contentId": 4,
+      "description": "Description for Event 4",
+      "duration": 120,
+      "createdAt": "2024-02-06T11:00:00Z",
+      "previewImgUrl": "https://example.com/event4-preview.jpg",
+      "srcUrl": "https://example.com/event4",
+      "bought": true,
+      "price": 15,
+      "type": "show"
+    },
+    {
+      "title": "Event 5",
+      "contentId": 5,
+      "description": "Description for Event 5",
+      "duration": 75,
+      "createdAt": "2024-02-06T12:00:00Z",
+      "previewImgUrl": "https://example.com/event5-preview.jpg",
+      "srcUrl": "https://example.com/event5",
+      "bought": true,
+      "price": 8,
+      "type": "broadcast",
+      "isLive": false
+    },
+    {
+      "title": "Event 6",
+      "contentId": 6,
+      "description": "Description for Event 6",
+      "duration": 30,
+      "createdAt": "2024-02-06T13:00:00Z",
+      "previewImgUrl": "https://example.com/event6-preview.jpg",
+      "srcUrl": "https://example.com/event6",
+      "bought": false,
+      "price": 0,
+      "type": "show"
+    },
+    {
+      "title": "Event 7",
+      "contentId": 7,
+      "description": "Description for Event 7",
+      "duration": 60,
+      "createdAt": "2024-02-06T14:00:00Z",
+      "previewImgUrl": "https://example.com/event7-preview.jpg",
+      "srcUrl": "https://example.com/event7",
+      "bought": true,
+      "price": 12,
+      "type": "broadcast",
+      "isLive": true,
+      "viewers": 75
+    },
+    {
+      "title": "Event 8",
+      "contentId": 8,
+      "description": "Description for Event 8",
+      "duration": 45,
+      "createdAt": "2024-02-06T15:00:00Z",
+      "previewImgUrl": "https://example.com/event8-preview.jpg",
+      "srcUrl": "https://example.com/event8",
+      "bought": true,
+      "price": 6,
+      "type": "appointment"
+    },
+    {
+      "title": "Event 9",
+      "contentId": 9,
+      "description": "Description for Event 9",
+      "duration": 90,
+      "createdAt": "2024-02-06T16:00:00Z",
+      "previewImgUrl": "https://example.com/event9-preview.jpg",
+      "srcUrl": "https://example.com/event9",
+      "bought": false,
+      "price": 0,
+      "type": "show"
+    },
+    {
+      "title": "Event 10",
+      "contentId": 10,
+      "description": "Description for Event 10",
+      "duration": 120,
+      "createdAt": "2024-02-06T17:00:00Z",
+      "previewImgUrl": "https://example.com/event10-preview.jpg",
+      "srcUrl": "https://example.com/event10",
+      "bought": true,
+      "price": 20,
+      "type": "broadcast",
+      "isLive": false
+    }
+  ],
+  "persons": [
+    {
+      "id": "1",
+      "personUrl": "https://example.com/person1",
+      "personScreenName": "JohnDoe",
+      "personAvatar": "https://example.com/avatar1.jpg",
+      "personBroadcastPreview": "https://example.com/broadcast1.jpg",
+      "personChatType": "public",
+      "personChatTopicDescription": "Discussion about sports",
+      "personLastOnlineTime": "2024-02-06T12:00:00Z",
+      "personChatViewers": "100",
+      "personIsLive": "true"
+    },
+    {
+      "id": "2",
+      "personUrl": "https://example.com/person2",
+      "personScreenName": "AliceSmith",
+      "personAvatar": "https://example.com/avatar2.jpg",
+      "personBroadcastPreview": "https://example.com/broadcast2.jpg",
+      "personChatType": "private",
+      "personChatTopicDescription": "Private conversation",
+      "personLastOnlineTime": "2024-02-06T10:00:00Z",
+      "personChatViewers": "50",
+      "personIsLive": "false"
+    },
+    {
+      "id": "3",
+      "personUrl": "https://example.com/person3",
+      "personScreenName": "BobJohnson",
+      "personAvatar": "https://example.com/avatar3.jpg",
+      "personBroadcastPreview": "https://example.com/broadcast3.jpg",
+      "personChatType": "public",
+      "personChatTopicDescription": "Discussion about technology",
+      "personLastOnlineTime": "2024-02-05T23:00:00Z",
+      "personChatViewers": "75",
+      "personIsLive": "true"
+    }
+  ]
+}

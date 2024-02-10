@@ -3,17 +3,17 @@ import { IAppInitData, IEvent, IEventResponse } from "../types.ts";
 export interface IMockEvents extends IEvent, IEventResponse {}
 
 export const appInitDataMock: IAppInitData = {
-  performerId: "23",
-  performerUrl: "https://via.placeholder.com/500",
-  performerScreenName: "placeholder",
-  performerAvatar: "https://via.placeholder.com/500",
-  performerBroadcastPreview: "https://via.placeholder.com/500",
-  performerChatType: "Free",
-  performerChatTopicDescription: "Chat Topic Description",
-  performerLastOnlineTime: "2023-10-01T10:30:00",
-  performerChatViewers: "234",
-  performerIsLive: "true",
-  widthIdSelector: "root",
+  personId: "23",
+  personUrl: "https://via.placeholder.com/500",
+  personScreenName: "placeholder",
+  personAvatar: "https://via.placeholder.com/500",
+  personBroadcastPreview: "https://via.placeholder.com/500",
+  personChatType: "Free",
+  personChatTopicDescription: "Chat Topic Description",
+  personLastOnlineTime: "2023-10-01T10:30:00",
+  personChatViewers: "234",
+  personIsLive: "true",
+  rootIdSelector: "root",
 };
 export const mockEvent: IMockEvents[] = [
   {

@@ -2,18 +2,14 @@ import { FC, useState } from "react";
 import "./styles.scss";
 import { IEvent, IModalEvent } from "../../types.ts";
 import dayjs from "dayjs";
+import { UTC_OFFSET } from "../../constants.ts";
 
 interface IOpenedEventProps {
   event: IModalEvent;
-  utcOffset: number;
   closeModal: () => void;
 }
 
-const OpenedEvent: FC<IOpenedEventProps> = ({
-  event,
-  closeModal,
-  utcOffset,
-}) => {
+const OpenedEvent: FC<IOpenedEventProps> = ({ event, closeModal }) => {
   const [isLinkCopied, setIsLinkCopied] = useState(false);
   const now = dayjs();
   const nowTime = now.format("hh:mm A");
@@ -54,20 +50,17 @@ const OpenedEvent: FC<IOpenedEventProps> = ({
             </div>
             <div className="broadcaster-info" style={{ marginTop: "-2em" }}>
               <figure>
-                <img
-                  alt={event.performerScreenName}
-                  src={event.performerAvatar}
-                />
+                <img alt={event.personScreenName} src={event.personAvatar} />
               </figure>
               <div className="screen-name">
-                <p>{event.performerScreenName}</p>
+                <p>{event.personScreenName}</p>
               </div>
             </div>
             <div className={"event-info" + (event.isLive ? " is-live" : "")}>
               <div className="event-info__row">
                 <p className="title stream-schedule-segment--text">
                   {event.title === "null"
-                    ? event.performerScreenName
+                    ? event.personScreenName
                     : event.title}
                 </p>
               </div>
@@ -89,7 +82,7 @@ const OpenedEvent: FC<IOpenedEventProps> = ({
               <div className="event-info__row">
                 <a
                   className="play-icon"
-                  href={event.isLive ? event.performerUrl : event.srcUrl}
+                  href={event.isLive ? event.personUrl : event.srcUrl}
                 >
                   <figure>
                     <svg width="100%" height="100%" viewBox="0 0 20 20">
@@ -111,7 +104,7 @@ const OpenedEvent: FC<IOpenedEventProps> = ({
                     <p>
                       {event.startDateLong}
                       <span> · </span>
-                      {event.startTime} - {nowTime} GMT+{utcOffset}
+                      {event.startTime} - {nowTime} GMT+{UTC_OFFSET}
                     </p>
                   ) : (
                     <p>

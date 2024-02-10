@@ -39,21 +39,26 @@ export interface IEvent extends IEventResponse {
   width?: number;
 }
 
-export interface IPerformerInfo {
-  performerId: string;
-  performerUrl: string;
-  performerScreenName: string;
-  performerAvatar: string;
-  performerBroadcastPreview: string;
-  performerChatType: string;
-  performerChatTopicDescription: string;
-  performerLastOnlineTime: string;
-  performerChatViewers: string;
-  performerIsLive: string;
+export interface FetchError {
+  message: string;
+  code: number;
 }
 
-export interface IAppInitData extends IPerformerInfo {
-  widthIdSelector: string;
+export interface IPersonInfo {
+  id: string;
+  personUrl: string;
+  personScreenName: string;
+  personAvatar: string;
+  personBroadcastPreview: string;
+  personChatType: string;
+  personChatTopicDescription: string;
+  personLastOnlineTime: string;
+  personChatViewers: string;
+  personIsLive: string;
+}
+
+export interface IAppInitData {
+  rootIdSelector: string;
 }
 
 export interface IModalEvent extends IAppInitData, IEvent {}

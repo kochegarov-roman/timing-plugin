@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  json-server:
+    image: codfish/json-server
+    ports:
+      - "3001:80"
+    volumes:
+      - ./server/db.json:/app/db.json
+      - ./server/middleware.ts:/app/middleware.ts
+      - ./server/routes.json:/app/routes.json
+    command: json-server --watch db.json --routes routes.json
