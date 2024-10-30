@@ -1,22 +1,21 @@
 import dayjs from "dayjs";
-import { IEvent } from "./types.ts";
+import { IEvent, ISelectedWeek, IWeekState } from "./types.ts";
 
-export interface ISelectedWeek {
-  weekDay: string;
-  day: dayjs.Dayjs;
-  date: string;
-}
+type TGetWeekData = (prevOffset: number, _offsetWeek: number) => IWeekState;
+
+export const getWeekData: TGetWeekData = (prevOffset: number, _offsetWeek: number) => {
+  const offsetWeek = _offsetWeek === 0 ? _offsetWeek : prevOffset + _offsetWeek;
+  const selectedWeek = generateWeekDays(offsetWeek);
+  return {
+    offsetWeek,
+    selectedWeek,
+    weekFrom: selectedWeek[0].day.subtract(1, "week").format("MM/DD/YYYY"),
+    weekTo: selectedWeek[selectedWeek.length - 1].day.format("MM/DD/YYYY"),
+  };
+};
 
 export function generateWeekDays(_offsetWeek: number): ISelectedWeek[] {
-  const weekDays = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
-  ];
+  const weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
   const days = [];
   const date = dayjs().add(_offsetWeek, "week");
@@ -35,14 +34,9 @@ export function generateWeekDays(_offsetWeek: number): ISelectedWeek[] {
 }
 
 const hoursNum = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-const hoursFull = hoursNum
-  .map((a) => a + " AM")
-  .concat(hoursNum.map((a) => a + " PM"));
+const hoursFull = hoursNum.map((a) => a + " AM").concat(hoursNum.map((a) => a + " PM"));
 
-export function generateHours(
-  hoursStream: string[],
-  isLive: boolean,
-): string[] {
+export function generateHours(hoursStream: string[], isLive: boolean): string[] {
   let hours = [];
 
   if (hoursStream.length > 0 || hoursStream.includes("00:00:00") || isLive) {
@@ -52,14 +46,10 @@ export function generateHours(
 
     const interval = Array.from([hourStart, hourEnd]).sort();
 
-    let indStart = hoursFull.indexOf(
-      dayjs(date + " " + interval[0]).format("h A"),
-    );
+    let indStart = hoursFull.indexOf(dayjs(date + " " + interval[0]).format("h A"));
     indStart = indStart > 0 ? indStart - 1 : indStart;
 
-    const indEnd = hoursFull.indexOf(
-      dayjs(date + " " + interval[1]).format("h A"),
-    );
+    const indEnd = hoursFull.indexOf(dayjs(date + " " + interval[1]).format("h A"));
     hours = hoursFull.slice(indStart, indEnd + 1);
   } else {
     hours = hoursFull;
@@ -77,8 +67,7 @@ export function getEventsByWeekDay(
     .filter((ev) => !!ev)
     .forEach((ev) => {
       if (dayjs(ev.dateEnd).format("DD") !== dayjs(ev.dateStart).format("DD")) {
-        const end =
-          dayjs(ev.dateStart).add(1, "day").format("YYYY-MM-DD") + " 00:00:00";
+        const end = dayjs(ev.dateStart).add(1, "day").format("YYYY-MM-DD") + " 00:00:00";
         extendedEvents.push({
           ...ev,
           dateStart: end,
@@ -99,10 +88,7 @@ export function getEventsByWeekDay(
   return [_eventsByWeekDay, extendedEvents];
 }
 
-export const findActiveHour = (
-  dividerHours: number,
-  hours: string[],
-): string => {
+export const findActiveHour = (dividerHours: number, hours: string[]): string => {
   let activeHour = dayjs().format("h A");
   const indStart = hoursFull.indexOf(activeHour) - dividerHours;
   for (const hour of hours) {

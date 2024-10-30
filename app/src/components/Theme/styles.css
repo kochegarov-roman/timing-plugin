@@ -1,0 +1,75 @@
+.toggle-theme {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: absolute;
+  right: 0; }
+  .toggle-theme .toggle {
+    position: relative;
+    width: 50px;
+    height: 30px;
+    border-radius: 12px; }
+    .toggle-theme .toggle-track {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 50px;
+      background-color: var(--color-background);
+      transition: background-color 0.3s;
+      box-sizing: border-box; }
+    .toggle-theme .toggle-thumb {
+      position: absolute;
+      top: 0;
+      left: -7px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: var(--color-background-primary);
+      transition: transform 0.3s;
+      display: flex; }
+      .toggle-theme .toggle-thumb:after {
+        content: "";
+        width: 20px;
+        height: 20px;
+        margin: auto;
+        display: block;
+        background-size: contain;
+        background-repeat: no-repeat; }
+      .toggle-theme .toggle-thumb.dark:after {
+        background-image: url("../../assets/moon.svg"); }
+      .toggle-theme .toggle-thumb.light:after {
+        background-image: url("../../assets/sun.svg"); }
+  .toggle-theme .toggle-icons {
+    margin-left: 10px;
+    width: 40px;
+    height: 20px;
+    justify-content: center;
+    align-content: center;
+    position: absolute;
+    left: 0;
+    display: none; }
+    .toggle-theme .toggle-icons .i-moon, .toggle-theme .toggle-icons .i-sun {
+      width: 100%;
+      height: 100%;
+      background-size: contain;
+      background-repeat: no-repeat; }
+    .toggle-theme .toggle-icons .i-moon {
+      background-image: url("../../assets/moon.svg"); }
+    .toggle-theme .toggle-icons .i-sun {
+      background-image: url("../../assets/sun.svg"); }
+  .toggle-theme .light .toggle-icons {
+    color: #333; }
+  .toggle-theme .light .toggle-track {
+    background-color: #fff; }
+  .toggle-theme .light .toggle-thumb {
+    transform: translateX(0); }
+  .toggle-theme .dark .toggle-icons {
+    color: #fff; }
+  .toggle-theme .dark .toggle-track {
+    background-color: #333; }
+  .toggle-theme .dark .toggle-thumb {
+    transform: translateX(29px); }
+
+/*# sourceMappingURL=styles.css.map */

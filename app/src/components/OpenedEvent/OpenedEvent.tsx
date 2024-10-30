@@ -1,15 +1,22 @@
 import { FC, useState } from "react";
 import "./styles.scss";
-import { IEvent, IModalEvent } from "../../types.ts";
+import { IEvent, IModalEvent, IPersonInfo } from "../../types.ts";
 import dayjs from "dayjs";
 import { UTC_OFFSET } from "../../constants.ts";
+import defEventImg from "../../assets/def-event.jpeg";
+import { ImageWithFallback } from "../Image/Image.tsx";
 
 interface IOpenedEventProps {
   event: IModalEvent;
   closeModal: () => void;
+  personInfo: IPersonInfo;
 }
 
-const OpenedEvent: FC<IOpenedEventProps> = ({ event, closeModal }) => {
+const OpenedEvent: FC<IOpenedEventProps> = ({
+  event,
+  closeModal,
+  personInfo,
+}) => {
   const [isLinkCopied, setIsLinkCopied] = useState(false);
   const now = dayjs();
   const nowTime = now.format("hh:mm A");
@@ -38,11 +45,15 @@ const OpenedEvent: FC<IOpenedEventProps> = ({ event, closeModal }) => {
       <div className="modal-event">
         <div role="dialog" className="wrapper">
           <div
-            className="schedule-event"
+            className="opened-schedule-event"
             style={{ border: "0.1em solid transparent" }}
           >
             <div className="stream-schedule-segment__popover-thumbnail">
-              <img src={event.previewImgUrl} alt={event.description} />
+              <ImageWithFallback
+                alt={event.title}
+                fallbackSrc={defEventImg}
+                src={event.previewImgUrl}
+              />
               <div
                 className="stream-schedule-segment__popover-thumbnail__underlay"
                 style={{ backgroundImage: `url(${event.previewImgUrl})` }}
@@ -50,18 +61,19 @@ const OpenedEvent: FC<IOpenedEventProps> = ({ event, closeModal }) => {
             </div>
             <div className="broadcaster-info" style={{ marginTop: "-2em" }}>
               <figure>
-                <img alt={event.personScreenName} src={event.personAvatar} />
+                <img
+                  alt={personInfo.personScreenName}
+                  src={personInfo.personAvatar}
+                />
               </figure>
               <div className="screen-name">
-                <p>{event.personScreenName}</p>
+                <p>{personInfo.personScreenName}</p>
               </div>
             </div>
             <div className={"event-info" + (event.isLive ? " is-live" : "")}>
               <div className="event-info__row">
                 <p className="title stream-schedule-segment--text">
-                  {event.title === "null"
-                    ? event.personScreenName
-                    : event.title}
+                  {event.title || personInfo.personScreenName}
                 </p>
               </div>
 
@@ -81,8 +93,10 @@ const OpenedEvent: FC<IOpenedEventProps> = ({ event, closeModal }) => {
 
               <div className="event-info__row">
                 <a
+                  target="_blank"
                   className="play-icon"
-                  href={event.isLive ? event.personUrl : event.srcUrl}
+                  href={event.isLive ? personInfo.personUrl : event.srcUrl}
+                  rel="noreferrer"
                 >
                   <figure>
                     <svg width="100%" height="100%" viewBox="0 0 20 20">
@@ -127,9 +141,7 @@ const OpenedEvent: FC<IOpenedEventProps> = ({ event, closeModal }) => {
                     </figure>
                     <div>Copy Link</div>
                   </button>
-                  {isLinkCopied && (
-                    <div style={{ float: "right" }}>Link copied</div>
-                  )}
+                  {isLinkCopied && <div className="copied">Link copied</div>}
                 </div>
               )}
             </div>

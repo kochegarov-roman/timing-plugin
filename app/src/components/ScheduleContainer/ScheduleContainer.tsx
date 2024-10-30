@@ -4,13 +4,20 @@ import duration from "dayjs/plugin/duration";
 import weekday from "dayjs/plugin/weekday";
 import relativeTime from "dayjs/plugin/relativeTime";
 import customParseFormat from "dayjs/plugin/customParseFormat";
-import { IAppInitData, IEvent, IModalEvent, IPersonInfo } from "../../types.ts";
+import {
+  IAppInitData,
+  IEvent,
+  IEventsWidth,
+  IModalEvent,
+  IPersonInfo,
+  ISelectedWeek,
+} from "../../types.ts";
 import useWindowResize from "../../hooks/useWindowResize.ts";
-import { generateHours, getDivider, ISelectedWeek } from "../../utils.ts";
-import Events from "../Events/Events.tsx";
+import { generateHours, getDivider } from "../../utils.ts";
 import "./styles.scss";
 import OpenedEvent from "../OpenedEvent/OpenedEvent.tsx";
 import Hours from "../Hours/Hours.tsx";
+import { Event } from "../Event/Event.tsx";
 import { IEventsByWeek } from "../../store/common.api.v1.ts";
 
 dayjs.extend(weekday);
@@ -50,10 +57,12 @@ const ScheduleContainer: FC<ScheduleContainerProps> = ({
   const hoursContainerWidth =
     document.getElementById(appInitData.rootIdSelector)?.offsetWidth || 500;
 
+  const [eventsWidthState, setEventsWidthState] = useState<IEventsWidth>({});
+
   function onResize() {
     const hoursResult = generateHours(
       allStartEndHoursStream,
-      isCurrentWeek && personInfo?.personIsLive === "true",
+      isCurrentWeek && !!personInfo?.personIsLive,
     );
     let divider = 1;
 
@@ -67,10 +76,7 @@ const ScheduleContainer: FC<ScheduleContainerProps> = ({
     );
     setDisplayedHours(_displayedHours);
 
-    const timeStart = dayjs(
-      anyDate + " " + _displayedHours[0],
-      "YYYY-MM-DD h A",
-    );
+    const timeStart = dayjs(anyDate + " " + _displayedHours[0], "YYYY-MM-DD h A");
     const timeEnd = dayjs(
       anyDate + " " + _displayedHours[_displayedHours.length - 1],
       "YYYY-MM-DD h A",
@@ -82,21 +88,25 @@ const ScheduleContainer: FC<ScheduleContainerProps> = ({
 
     const resizeEvents = Object.values(eventsByWeekDay).flat();
 
+    const eventsWidth: IEventsWidth = {};
     resizeEvents.map((event) => {
-      if (event.dateStart) {
+      const ev = { ...event };
+      if (ev.dateStart) {
         const timeStartDay = dayjs(
-          event.dateStart.slice(0, 11) + _displayedHours[0],
+          ev.dateStart.slice(0, 11) + _displayedHours[0],
           "YYYY-MM-DD h A",
         );
-        const timeStartEvent = dayjs(event.dateStart);
-        event.marginLeft =
-          pixInMinute * timeStartEvent.diff(timeStartDay, "minute");
-        event.width = (pixInMinute * event.duration) / 60; // minutes
+        const timeStartEvent = dayjs(ev.dateStart);
+        eventsWidth[ev.dateStart] = {
+          marginLeft: pixInMinute * timeStartEvent.diff(timeStartDay, "minute"),
+          width: (pixInMinute * ev.duration) / 60, // minutes
+        };
       }
     });
-
-    console.log(resizeEvents);
+    setEventsWidthState(eventsWidth);
   }
+
+  console.log("eventsByWeekDay", eventsData?.eventsByWeekDay, eventsWidthState);
 
   const [selectedEvent, setSelectEvent] = useState<IModalEvent | null>(null);
 
@@ -122,7 +132,7 @@ const ScheduleContainer: FC<ScheduleContainerProps> = ({
         <div className="stream-schedule-week week-td">
           {selectedWeek.map((day, index) => (
             <div
-              key={day.date}
+              key={index + day.date}
               className={`weekday ${getActiveClass(index, activeWeekDay)}`}
             >
               {day.weekDay}
@@ -135,29 +145,30 @@ const ScheduleContainer: FC<ScheduleContainerProps> = ({
         <div className="stream-schedule__events">
           {selectedWeek.map((day, index) => (
             <div
-              key={index}
-              className={
-                "stream-schedule-day " + getActiveClass(index, activeWeekDay)
-              }
+              key={"stream-schedule-day_" + index}
+              className={"stream-schedule-day " + getActiveClass(index, activeWeekDay)}
             >
-              {eventsByWeekDay[day.date] && (
-                <Events
-                  events={eventsByWeekDay[day.date]}
-                  appInitInfo={appInitData}
-                  handleSelectEvent={selectEvent}
-                  selectedEventKey={
-                    selectedEvent
-                      ? selectedEvent.contentId + selectedEvent.type
-                      : ""
-                  }
-                />
-              )}
+              {eventsByWeekDay[day.date] &&
+                Object.keys(eventsWidthState).length > 0 &&
+                !!personInfo &&
+                eventsByWeekDay[day.date].map((event) => (
+                  <Event
+                    event={event}
+                    key={event.id + (event.startTime || "")}
+                    eventsWidth={eventsWidthState}
+                    personInfo={personInfo}
+                    handleSelectEvent={selectEvent}
+                    selectedEventKey={
+                      selectedEvent ? selectedEvent.contentId + selectedEvent.type : ""
+                    }
+                  />
+                ))}
             </div>
           ))}
         </div>
 
-        {selectedEvent && (
-          <OpenedEvent event={selectedEvent} closeModal={closeEventModal} />
+        {selectedEvent && personInfo && (
+          <OpenedEvent event={selectedEvent} closeModal={closeEventModal} personInfo={personInfo} />
         )}
       </div>
     </div>

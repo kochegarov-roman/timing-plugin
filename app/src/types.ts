@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+
 export interface IResponse {
   shows: IEventResponse[];
   broadcasts: IEventResponse[];
@@ -17,14 +19,14 @@ export interface IEventResponse {
   price: number;
   isLive?: boolean;
   viewers?: number;
-  type: "show" | "appointment" | "broadcast";
+  type: string;
   onClickMethod?: string;
 }
 
 export interface IEvent extends IEventResponse {
   views: number;
-  date?: string;
-  dateStart?: string;
+  date: string;
+  dateStart: string;
   dateEnd?: string;
   durationTime?: string;
   startDateLong?: string;
@@ -37,6 +39,14 @@ export interface IEvent extends IEventResponse {
   notEnded?: boolean;
   isStartedYesterday?: boolean;
   width?: number;
+  id: number;
+}
+
+export interface IEventsWidth {
+  [key: string]: {
+    marginLeft: number;
+    width: number;
+  };
 }
 
 export interface FetchError {
@@ -45,7 +55,7 @@ export interface FetchError {
 }
 
 export interface IPersonInfo {
-  id: string;
+  id: number;
   personUrl: string;
   personScreenName: string;
   personAvatar: string;
@@ -53,12 +63,27 @@ export interface IPersonInfo {
   personChatType: string;
   personChatTopicDescription: string;
   personLastOnlineTime: string;
-  personChatViewers: string;
-  personIsLive: string;
+  personChatViewers: number;
+  personIsLive: boolean;
 }
 
 export interface IAppInitData {
   rootIdSelector: string;
 }
 
+interface ISelectedWeek {
+  weekDay: string;
+  day: dayjs.Dayjs;
+  date: string;
+}
+
+export type { ISelectedWeek };
+
 export interface IModalEvent extends IAppInitData, IEvent {}
+
+export interface IWeekState {
+  offsetWeek: number;
+  selectedWeek: ISelectedWeek[];
+  weekFrom: string;
+  weekTo: string;
+}

@@ -7,16 +7,10 @@
   font-size: 1.3em !important;
   background-color: var(--live-color);
   color: #fff;
-  text-transform: uppercase;
-}
+  text-transform: uppercase; }
 
-#schedule-app {
-  .is-live {
-    hr {
-      border-color: var(--live-color);
-    }
-  }
-}
+#schedule-app .is-live hr {
+  border-color: var(--live-color); }
 
 .overlay-modal {
   position: absolute;
@@ -28,27 +22,22 @@
   border-bottom-right-radius: 0.6em;
   z-index: 10;
   background: #12312366;
-  cursor: pointer;
-}
-
+  cursor: pointer; }
 
 .modal-event {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  z-index: 11;
-}
+  z-index: 11; }
 
 .title {
-  font-size: 2.4em;
-}
+  font-size: 2.4em; }
 
 .copy-link {
   background-color: var(--color-background-mute);
   color: var(--color-text);
   border: none;
-
   padding: 1em 2em;
   display: inline-flex;
   position: relative;
@@ -64,30 +53,22 @@
   font-weight: 600;
   border-radius: 0.2em;
   font-size: 1.2em;
-  height: 2.4em;
-
-  &:hover {
+  height: 2.4em; }
+  .copy-link:hover {
     cursor: pointer;
-    background-color: var(--vt-c-divider-light-2);
-  }
-
-  figure {
+    background-color: var(--vt-c-divider-light-2); }
+  .copy-link figure {
     display: inline-flex;
     -webkit-box-align: center;
     align-items: center;
     width: 20px;
-    margin: 0;
-
-    svg {
-      fill: var(--color-text);
-    }
-  }
-}
+    margin: 0; }
+    .copy-link figure svg {
+      fill: var(--color-text); }
 
 .copied {
   float: right;
-  padding-top: 10px;
-}
+  padding-top: 10px; }
 
 .close-modal {
   position: absolute;
@@ -95,18 +76,15 @@
   right: 0px;
   z-index: 10;
   padding-right: 1em;
-  padding-top: 1em;
-
-  svg {
+  padding-top: 1em; }
+  .close-modal svg {
     fill: var(--color-text);
     position: absolute;
     width: 50%;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  button {
+    transform: translate(-50%, -50%); }
+  .close-modal button {
     position: relative;
     display: inline-flex;
     -webkit-box-align: center;
@@ -119,14 +97,10 @@
     width: 2em;
     background-color: transparent;
     border: none;
-    color: var(--color-text);
-
-    &:hover {
+    color: var(--color-text); }
+    .close-modal button:hover {
       cursor: pointer;
-      background-color: var(--vt-c-divider-light-2);
-    }
-  }
-}
+      background-color: var(--vt-c-divider-light-2); }
 
 .play-icon {
   justify-content: left;
@@ -137,7 +111,6 @@
   text-decoration: none;
   white-space: nowrap;
   user-select: none;
-  //width: 100%;
   font-weight: 600;
   border-radius: 0.6em;
   font-size: 1.4em;
@@ -150,19 +123,14 @@
   -webkit-box-flex: 0;
   flex-grow: 0;
   padding: 0 1em 0 0.8em;
-  line-height: 1em;
-
-  &:hover {
-    cursor: pointer;
-  }
-
-  figure {
+  line-height: 1em; }
+  .play-icon:hover {
+    cursor: pointer; }
+  .play-icon figure {
     display: inline-flex;
     -webkit-box-align: center;
     align-items: center;
-    width: 1.4em;
-  }
-}
+    width: 1.4em; }
 
 .wrapper {
   display: inline-block;
@@ -172,22 +140,17 @@
   border-radius: 0.6em;
   background-color: var(--color-background-soft);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5), 0 0 4px rgba(0, 0, 0, 0.4);
-  color: inherit;
-}
+  color: inherit; }
 
-.status-text-indicator {
-  .live {
-    margin-right: 10px !important;
-  }
-}
+.status-text-indicator .live {
+  margin-right: 10px !important; }
 
 .opened-schedule-event {
   border-top-right-radius: 0.6em;
   border-bottom-right-radius: 0.6em;
   width: 100%;
   position: relative;
-  z-index: 10;
-}
+  z-index: 10; }
 
 .segment-info {
   display: flex;
@@ -196,29 +159,24 @@
   padding-right: 0;
   -webkit-box-align: baseline;
   align-items: baseline;
-  width: 100%;
-}
+  width: 100%; }
 
 .point {
   display: inline;
   margin-left: 0.5em;
-  margin-right: 0.5em;
-}
+  margin-right: 0.5em; }
 
 .text {
   padding-left: 0;
   padding-right: 0;
-  margin-bottom: 0.5em;
-
-  p {
+  margin-bottom: 0.5em; }
+  .text p {
     pointer-events: none;
     white-space: nowrap;
     font-size: 1.4em;
     line-height: 1.2;
     word-break: break-word;
-    font-weight: 600;
-  }
-}
+    font-weight: 600; }
 
 .stream-schedule-segment__popover-thumbnail {
   border-radius: 0.6em 0.6em 0 0;
@@ -227,16 +185,13 @@
   -webkit-box-pack: center;
   justify-content: center;
   position: relative;
-  overflow: hidden;
-
-  img {
+  overflow: hidden; }
+  .stream-schedule-segment__popover-thumbnail img {
     border: none;
     max-width: 100%;
     vertical-align: top;
-    z-index: var(--z-index-above);
-  }
-
-  &__underlay {
+    z-index: var(--z-index-above); }
+  .stream-schedule-segment__popover-thumbnail__underlay {
     background-repeat: no-repeat;
     position: absolute;
     background-size: cover;
@@ -244,22 +199,18 @@
     height: calc(100% + 0.8em);
     opacity: 0.25;
     transform: translateY(-0.4em);
-    width: calc(100% + 0.8em);
-  }
-}
+    width: calc(100% + 0.8em); }
 
 .broadcaster-info {
   padding-left: 2em;
-  padding-right: 2em;
-
-  figure {
+  padding-right: 2em; }
+  .broadcaster-info figure {
     position: relative;
     background-color: inherit;
     width: 4em;
     height: 4em;
-    display: block;
-
-    img {
+    display: block; }
+    .broadcaster-info figure img {
       display: block;
       border-radius: 100%;
       width: 100%;
@@ -271,28 +222,20 @@
       max-width: 100%;
       vertical-align: top;
       overflow-clip-margin: content-box;
-      overflow: clip;
-    }
-  }
-
-  .screen-name {
+      overflow: clip; }
+  .broadcaster-info .screen-name {
     margin-top: 1em;
-    margin-bottom: 1em;
-
-    p {
+    margin-bottom: 1em; }
+    .broadcaster-info .screen-name p {
       font-size: 1.4em;
       font-weight: 600;
-      line-height: 1.5;
-    }
-  }
-}
+      line-height: 1.5; }
 
 .stream-schedule-segment--text {
   pointer-events: none;
   line-height: 1.2;
   word-break: break-word;
-  font-weight: 600;
-}
+  font-weight: 600; }
 
 .event-info {
   -webkit-box-align: center;
@@ -303,11 +246,10 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  text-align: left;
-
-  &__row {
+  text-align: left; }
+  .event-info__row {
     padding-left: 2em;
     padding-right: 2em;
-    margin-bottom: 1em;
-  }
-}
+    margin-bottom: 1em; }
+
+/*# sourceMappingURL=styles.css.map */

@@ -1,206 +1,82 @@
-import { IAppInitData, IEvent, IEventResponse } from "../types.ts";
+import { IEvent } from "../types.ts";
+import dayjs from "dayjs";
+import { UTC_OFFSET } from "../constants.ts";
+import { faker } from "@faker-js/faker";
+import defEventImg from "../assets/def-event.jpeg";
 
-export interface IMockEvents extends IEvent, IEventResponse {}
-
-export const appInitDataMock: IAppInitData = {
-  personId: "23",
-  personUrl: "https://via.placeholder.com/500",
-  personScreenName: "placeholder",
-  personAvatar: "https://via.placeholder.com/500",
-  personBroadcastPreview: "https://via.placeholder.com/500",
-  personChatType: "Free",
-  personChatTopicDescription: "Chat Topic Description",
-  personLastOnlineTime: "2023-10-01T10:30:00",
-  personChatViewers: "234",
-  personIsLive: "true",
-  rootIdSelector: "root",
+const generateRandomEvent = (): IEvent => {
+  return {
+    title: faker.lorem.words(),
+    contentId: faker.number.int(),
+    description: faker.lorem.paragraph(),
+    duration: faker.number.int({ min: 5000, max: 40000 }),
+    createdAt: faker.date
+      .between({
+        from: dayjs().add(-1, "weeks").format("YYYY-MM-DDTHH:mm:ss"),
+        to: dayjs().add(1, "weeks").format("YYYY-MM-DDTHH:mm:ss"),
+      })
+      .toISOString(),
+    previewImgUrl: faker.image.url(),
+    srcUrl: faker.internet.url(),
+    bought: false,
+    price: faker.number.float({ min: 1, max: 100, fractionDigits: 1 }),
+    isLive: false,
+    viewers: faker.number.int({ min: 1, max: 100 }),
+    views: faker.number.int({ min: 1, max: 10000 }),
+    dateStart: "",
+    date: "",
+    id: faker.number.int(),
+    type: faker.string.fromCharacters(["show", "appointment", "broadcast"]),
+  };
 };
-export const mockEvent: IMockEvents[] = [
-  {
-    views: 100,
-    date: "2023-10-01",
-    dateStart: "2023-10-01T09:00:00",
-    dateEnd: "2023-10-01T10:30:00",
-    durationTime: "1h 30m",
-    startDateLong: "October 1, 2023",
-    startTime: "09:00 AM",
-    endTime: "10:30 AM",
-    weekDay: 1,
-    marginLeft: 0,
-    notEnded: true,
-    isStartedYesterday: false,
-    width: 100,
-    title: "Event 1",
-    contentId: 1,
-    description: "This is event 1 description.",
-    duration: 190 * 60,
-    createdAt: "2023-09-30T12:00:00",
-    previewImgUrl: "https://via.placeholder.com/300",
-    srcUrl: "https://via.placeholder.com/300",
-    bought: true,
-    price: 10,
-    isLive: true,
-    viewers: 50,
-    type: "show",
-  },
-  {
-    views: 200,
-    date: "2023-10-02",
-    dateStart: "2023-10-02T14:00:00",
-    dateEnd: "2023-10-02T15:30:00",
-    durationTime: "1h 30m",
-    startDateLong: "October 2, 2023",
-    startTime: "02:00 PM",
-    endTime: "03:30 PM",
-    weekDay: 2,
-    marginLeft: 0,
-    notEnded: true,
-    isStartedYesterday: false,
-    width: 100,
-    title: "Event 2",
-    contentId: 2,
-    description: "This is event 2 description.",
-    duration: 90 * 60,
-    createdAt: "2023-10-01T12:00:00",
-    previewImgUrl: "https://via.placeholder.com/300",
-    srcUrl: "https://via.placeholder.com/300",
-    bought: false,
-    price: 5,
-    isLive: false,
-    viewers: 0,
-    type: "appointment",
-  },
-  {
-    views: 300,
-    date: "2023-10-03",
-    dateStart: "2023-10-03T18:00:00",
-    dateEnd: "2023-10-03T19:30:00",
-    durationTime: "1h 30m",
-    startDateLong: "October 3, 2023",
-    startTime: "06:00 PM",
-    endTime: "07:30 PM",
-    weekDay: 3,
-    marginLeft: 0,
-    notEnded: true,
-    isStartedYesterday: false,
-    width: 100,
-    title: "Event 3",
-    contentId: 3,
-    description: "This is event 3 description.",
-    duration: 120 * 60,
-    createdAt: "2023-10-02T12:00:00",
-    previewImgUrl: "https://via.placeholder.com/300",
-    srcUrl: "https://via.placeholder.com/300",
-    bought: true,
-    price: 15,
-    isLive: true,
-    viewers: 80,
-    type: "broadcast",
-  },
-  {
-    views: 400,
-    date: "2023-10-04",
-    dateStart: "2023-10-04T10:00:00",
-    dateEnd: "2023-10-04T11:30:00",
-    durationTime: "1h 30m",
-    startDateLong: "October 4, 2023",
-    startTime: "10:00 AM",
-    endTime: "11:30 AM",
-    weekDay: 4,
-    marginLeft: 0,
-    notEnded: true,
-    isStartedYesterday: false,
-    width: 100,
-    title: "Event 4",
-    contentId: 4,
-    description: "This is event 4 description.",
-    duration: 30 * 60,
-    createdAt: "2023-10-03T12:00:00",
-    previewImgUrl: "https://via.placeholder.com/300",
-    srcUrl: "https://via.placeholder.com/300",
-    bought: false,
-    price: 8,
-    isLive: false,
-    viewers: 0,
-    type: "appointment",
-  },
-  {
-    views: 500,
-    date: "2023-10-05",
-    dateStart: "2023-10-05T15:00:00",
-    dateEnd: "2023-10-05T16:30:00",
-    durationTime: "1h 30m",
-    startDateLong: "October 5, 2023",
-    startTime: "03:00 PM",
-    endTime: "04:30 PM",
-    weekDay: 5,
-    marginLeft: 0,
-    notEnded: true,
-    isStartedYesterday: false,
-    width: 100,
-    title: "Event 5",
-    contentId: 5,
-    description: "This is event 5 description.",
-    duration: 290 * 60,
-    createdAt: "2023-10-04T12:00:00",
-    previewImgUrl: "https://via.placeholder.com/300",
-    srcUrl: "https://via.placeholder.com/300",
-    bought: true,
-    price: 12,
-    isLive: false,
-    viewers: 0,
-    type: "show",
-  },
-  {
-    views: 600,
-    date: "2023-10-06",
-    dateStart: "2023-10-06T10:00:00",
-    dateEnd: "2023-10-06T10:30:00",
-    durationTime: "1h 30m",
-    startDateLong: "October 6, 2023",
-    startTime: "09:00 AM",
-    endTime: "10:30 AM",
-    weekDay: 6,
-    marginLeft: 0,
-    notEnded: true,
-    isStartedYesterday: false,
-    width: 100,
-    title: "Event 6",
-    contentId: 6,
-    description: "This is event 6 description.",
-    duration: 100 * 60,
-    createdAt: "2023-10-05T12:00:00",
-    previewImgUrl: "https://via.placeholder.com/300",
-    srcUrl: "https://via.placeholder.com/300",
-    bought: false,
-    price: 6,
-    type: "broadcast",
-  },
-  {
-    views: 700,
-    date: "2023-10-07",
-    dateStart: "2023-10-07T16:00:00",
-    dateEnd: "2023-10-07T17:30:00",
-    durationTime: "1h 30m",
-    startDateLong: "October 7, 2023",
-    startTime: "04:00 PM",
-    endTime: "05:30 PM",
-    weekDay: 7,
-    marginLeft: 0,
-    notEnded: true,
-    isStartedYesterday: false,
-    width: 100,
-    title: "Event 7",
-    contentId: 7,
-    description: "This is event 7 description.",
-    duration: 40 * 60,
-    createdAt: "2023-10-06T12:00:00",
-    previewImgUrl: "https://via.placeholder.com/300",
-    srcUrl: "https://via.placeholder.com/300",
-    bought: true,
-    price: 20,
-    isLive: false,
-    viewers: 0,
-    type: "appointment",
-  },
-];
+
+let fakerEvents = new Array(10)
+  .fill(0)
+  .map(() => generateRandomEvent())
+  .sort((a, b) => (a.createdAt > b.createdAt ? 1 : -1));
+
+const filteredEvents: IEvent[] = [];
+fakerEvents.forEach((ev, ind) => {
+  if (ind === 0) {
+    filteredEvents.push(ev);
+  } else {
+    const a = ev.createdAt;
+    const lastApplied = filteredEvents[filteredEvents.length - 1];
+    const b = dayjs(lastApplied.createdAt).add(lastApplied.duration, "seconds").toISOString();
+
+    if (a > b) filteredEvents.push(ev);
+  }
+});
+
+fakerEvents = filteredEvents;
+
+// todo: create many event in one day
+// todo: create event started on last week
+// todo: create an event ending next week
+
+export const mockEvents: IEvent[] = filteredEvents;
+
+const mockLiveEvent: IEvent = {
+  id: 10,
+  title: "Event 10",
+  contentId: 10,
+  description: "Live TEST event",
+  duration: 36000,
+  createdAt: dayjs()
+    .add(-(2 + UTC_OFFSET), "hours")
+    .format("YYYY-MM-DDTHH:mm:ss"),
+  previewImgUrl: defEventImg,
+  srcUrl: "https://via.placeholder.com/300",
+  bought: true,
+  price: 20,
+  views: 12,
+  viewers: 123,
+  date: "",
+  dateStart: "",
+  type: "broadcast",
+  isLive: true,
+};
+
+export const createEventOnCurrentWeek: (events: IEvent[]) => IEvent[] = () => {
+  return [...mockEvents, mockLiveEvent];
+};

@@ -1,8 +1,7 @@
 .schedule-controls {
   margin: 1em 0;
-  display: flex;
-
-  button {
+  display: flex; }
+  .schedule-controls button {
     -webkit-box-align: center;
     align-items: center;
     padding: 0 1.5em;
@@ -17,15 +16,11 @@
     border-radius: 0.4em;
     font-size: 1.3em;
     height: 2.2em;
-    border: none;
-
-    &:hover {
-      cursor: pointer;
-    }
-  }
-
-  .back-button,
-  .next-button {
+    border: none; }
+    .schedule-controls button:hover {
+      cursor: pointer; }
+  .schedule-controls .back-button,
+  .schedule-controls .next-button {
     width: 30px;
     height: 25px;
     display: inline-flex;
@@ -36,30 +31,22 @@
     margin: 0 0.3em;
     padding: 0.3em;
     background-color: var(--color-background-soft);
-    color: var(--color-text);
-  }
-
-  svg {
-    fill: var(--color-text);
-  }
-
-  .selected-week {
+    color: var(--color-text); }
+  .schedule-controls svg {
+    fill: var(--color-text); }
+  .schedule-controls .selected-week {
     line-height: 1;
     font-size: 1em;
     font-weight: 600;
     margin-left: 1em;
     display: flex;
-    align-self: center;
-
-    p {
-      color: var(--color-text-invert);
-    }
-  }
-
-  .btn-today {
+    align-self: center; }
+    .schedule-controls .selected-week p {
+      color: var(--color-text-invert); }
+  .schedule-controls .btn-today {
     background-color: var(--color-background-primary);
     color: var(--color-text-primary);
     margin-right: 0.3em;
-    height: 25px;
-  }
-}
+    height: 25px; }
+
+/*# sourceMappingURL=styles.css.map */

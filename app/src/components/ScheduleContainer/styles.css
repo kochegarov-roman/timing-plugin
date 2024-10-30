@@ -1,24 +1,32 @@
 /*
-Error: wrong number of arguments (4 for 3) for `rgb'
-        on line 12 of index.scss
+Error: wrong number of arguments (1 for 3) for `rgb'
+        on line 33 of styles.module.scss
 
-7:   --vt-c-black-soft: #201f24;
-8:   --vt-c-black-mute: #282829;
-9: 
-10:   --vt-c-indigo: #2c34e60;
-11: 
-12:   --vt-c-divider-light-1: rgb(173, 173, 184, 0.35);
-13:   --vt-c-divider-light-2: rgba(60, 60, 60, 0.12);
-14:   --vt-c-divider-dark-1: rgba(84, 84, 84, 0.65);
-15:   --vt-c-divider-dark-2: rgba(84, 84, 84, 0.48);
-16: 
-17:   --vt-c-text-light-1: var(--vt-c-indigo);
+28: 
+29: .stream-schedule-times {
+30:   display: flex;
+31:   -webkit-box-align: center;
+32:   align-items: center;
+33:   box-shadow: 0 4px 8px rgb(0 0 0 / 16%), 0 0 4px rgb(0 0 0 / 16%);
+34:   width: 100%;
+35:   border-top: 1px solid rgb(173 173 184 / 35%);
+36:   border-right: 1px solid rgb(173 173 184 / 35%);
+37:   border-left: 1px solid rgb(173 173 184 / 35%);
+38: 
 
 Backtrace:
-index.scss:12
+styles.module.scss:33
 /Library/Ruby/Gems/2.6.0/gems/sass-3.4.25/lib/sass/script/tree/funcall.rb:310:in `reformat_argument_error'
 /Library/Ruby/Gems/2.6.0/gems/sass-3.4.25/lib/sass/script/tree/funcall.rb:149:in `rescue in _perform'
 /Library/Ruby/Gems/2.6.0/gems/sass-3.4.25/lib/sass/script/tree/funcall.rb:122:in `_perform'
+/Library/Ruby/Gems/2.6.0/gems/sass-3.4.25/lib/sass/script/tree/node.rb:58:in `perform'
+/Library/Ruby/Gems/2.6.0/gems/sass-3.4.25/lib/sass/script/tree/list_literal.rb:63:in `block in _perform'
+/Library/Ruby/Gems/2.6.0/gems/sass-3.4.25/lib/sass/script/tree/list_literal.rb:63:in `map'
+/Library/Ruby/Gems/2.6.0/gems/sass-3.4.25/lib/sass/script/tree/list_literal.rb:63:in `_perform'
+/Library/Ruby/Gems/2.6.0/gems/sass-3.4.25/lib/sass/script/tree/node.rb:58:in `perform'
+/Library/Ruby/Gems/2.6.0/gems/sass-3.4.25/lib/sass/script/tree/list_literal.rb:63:in `block in _perform'
+/Library/Ruby/Gems/2.6.0/gems/sass-3.4.25/lib/sass/script/tree/list_literal.rb:63:in `map'
+/Library/Ruby/Gems/2.6.0/gems/sass-3.4.25/lib/sass/script/tree/list_literal.rb:63:in `_perform'
 /Library/Ruby/Gems/2.6.0/gems/sass-3.4.25/lib/sass/script/tree/node.rb:58:in `perform'
 /Library/Ruby/Gems/2.6.0/gems/sass-3.4.25/lib/sass/tree/visitors/perform.rb:398:in `visit_prop'
 /Library/Ruby/Gems/2.6.0/gems/sass-3.4.25/lib/sass/tree/visitors/base.rb:36:in `visit'
@@ -64,4 +72,4 @@ index.scss:12
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: wrong number of arguments (4 for 3) for `rgb'\A         on line 12 of index.scss\A \A 7:   --vt-c-black-soft: #201f24;\A 8:   --vt-c-black-mute: #282829;\A 9: \A 10:   --vt-c-indigo: #2c34e60;\A 11: \A 12:   --vt-c-divider-light-1: rgb(173, 173, 184, 0.35);\A 13:   --vt-c-divider-light-2: rgba(60, 60, 60, 0.12);\A 14:   --vt-c-divider-dark-1: rgba(84, 84, 84, 0.65);\A 15:   --vt-c-divider-dark-2: rgba(84, 84, 84, 0.48);\A 16: \A 17:   --vt-c-text-light-1: var(--vt-c-indigo);"; }
+  content: "Error: wrong number of arguments (1 for 3) for `rgb'\A         on line 33 of styles.scss\A \A 28: \A 29: .stream-schedule-times {\A 30:   display: flex;\A 31:   -webkit-box-align: center;\A 32:   align-items: center;\A 33:   box-shadow: 0 4px 8px rgb(0 0 0 / 16%), 0 0 4px rgb(0 0 0 / 16%);\A 34:   width: 100%;\A 35:   border-top: 1px solid rgb(173 173 184 / 35%);\A 36:   border-right: 1px solid rgb(173 173 184 / 35%);\A 37:   border-left: 1px solid rgb(173 173 184 / 35%);\A 38: "; }

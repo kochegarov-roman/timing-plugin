@@ -3,6 +3,7 @@ import { IEvent, IPersonInfo } from "../types";
 import { API_URL, UTC_OFFSET } from "../constants.ts";
 import dayjs from "dayjs";
 import { transformLongEvent } from "../utils.ts";
+import { createEventOnCurrentWeek } from "../mock/mock-events.ts";
 
 export interface IEventsByWeek {
   allStartEndHoursStream: string[];
@@ -11,7 +12,10 @@ export interface IEventsByWeek {
 }
 
 const transformEventsResponse = (events: IEvent[]): IEventsByWeek => {
-  const transformedEvents = events.map((ev: IEvent) => {
+  // set 5 events on current week for test
+  let transformedEvents = createEventOnCurrentWeek(events);
+  transformedEvents = [...transformedEvents].map((ev: IEvent) => {
+    ev = { ...ev };
     ev.dateStart = dayjs(ev.createdAt)
       .add(UTC_OFFSET, "hours")
       .format("YYYY-MM-DD HH:mm:ss");
@@ -73,6 +77,7 @@ export const commonAPI = createApi({
       query: (personId) => `/persons/${personId}`,
     }),
   }),
+  refetchOnMountOrArgChange: false,
 });
 
 export const { useFetchEventsQuery, useFetchPersonInfoByIdQuery } = commonAPI;

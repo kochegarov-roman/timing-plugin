@@ -1,16 +1,13 @@
 import { FC } from "react";
-import { ISelectedWeek } from "../../utils.ts";
 import "./styles.scss";
+import { ISelectedWeek } from "../../types.ts";
 
 interface IScheduleControlsProps {
   selectedWeek: ISelectedWeek[];
   setOffsetWeek: (val: number) => void;
 }
 
-const ScheduleControls: FC<IScheduleControlsProps> = ({
-  selectedWeek,
-  setOffsetWeek,
-}) => {
+const ScheduleControls: FC<IScheduleControlsProps> = ({ selectedWeek, setOffsetWeek }) => {
   const handleTodayClick = () => setOffsetWeek(0);
   const handleBackClick = () => setOffsetWeek(-1);
   const handleNextClick = () => setOffsetWeek(1);

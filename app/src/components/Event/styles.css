@@ -1,0 +1,107 @@
+.selected-event,
+.live-event {
+  border: 0.1rem solid var(--color-background-primary);
+  box-shadow: var(--color-background-primary) 0 0 0.3rem 0.1rem; }
+
+.live-event {
+  background-color: var(--color-background-primary); }
+  .live-event hr {
+    border-color: white; }
+
+.preview-info .duration.live {
+  display: inline-block;
+  text-align: center;
+  pointer-events: none;
+  padding: 0 0.2em;
+  border-radius: 0.2em;
+  font-size: 1.3em;
+  line-height: 1.3em;
+  background-color: var(--live-color);
+  color: #fff;
+  text-transform: uppercase; }
+
+.schedule-event {
+  position: absolute; }
+  .schedule-event:hover {
+    cursor: pointer; }
+
+#schedule-app .is-live hr {
+  border-color: var(--live-color); }
+
+.point {
+  display: inline;
+  margin-left: 0.5em;
+  margin-right: 0.5em; }
+
+.stream-schedule-segment--text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; }
+.stream-schedule-segment--info {
+  display: flex;
+  padding-left: 0;
+  padding-right: 0;
+  -webkit-box-align: baseline;
+  align-items: baseline;
+  width: 100%; }
+.stream-schedule-segment--element {
+  min-height: 7.6em;
+  overflow: hidden;
+  color: var(--color-text);
+  padding-left: 1em;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  position: relative;
+  border-radius: 0.6em;
+  width: 100%;
+  height: 100%; }
+.stream-schedule-segment--fade {
+  flex-shrink: 2;
+  overflow: hidden;
+  text-align: left;
+  width: 100%; }
+  .stream-schedule-segment--fade .text {
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: 0.5em; }
+    .stream-schedule-segment--fade .text p {
+      pointer-events: none;
+      white-space: nowrap;
+      font-size: 1.4em;
+      line-height: 1.2;
+      word-break: break-word;
+      font-weight: 600; }
+
+.preview {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5), 0 0 4px rgba(0, 0, 0, 0.4);
+  position: absolute;
+  right: 0;
+  max-width: 80px; }
+  .preview img {
+    border: none;
+    max-width: 100%;
+    vertical-align: top;
+    height: 7.6em;
+    min-width: 70px;
+    object-fit: cover;
+    -o-object-position: center;
+    object-position: center; }
+  .preview-info {
+    top: 0;
+    left: 0;
+    position: absolute;
+    margin: 0.5em; }
+    .preview-info .duration {
+      padding: 0 0.4em;
+      display: flex;
+      -webkit-box-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      justify-content: center;
+      background: var(--vt-c-text-light-2);
+      font-size: 1.3em;
+      border-radius: 0.1em;
+      color: var(--vt-c-white-soft); }
+
+/*# sourceMappingURL=styles.css.map */
