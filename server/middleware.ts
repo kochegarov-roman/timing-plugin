@@ -14,7 +14,10 @@ export = (req: any, res: any, next: any) => {
         const eventDate = new Date(event.createdAt);
         return eventDate >= fromDate && eventDate <= toDate;
       });
-    res.json(filteredEvents);
+    
+    setTimeout(() => {
+      res.json(filteredEvents);
+    }, 2000)
   } else {
     next();
   }

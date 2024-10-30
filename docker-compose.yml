@@ -9,4 +9,4 @@ services:
       - ./server/db.json:/app/db.json
       - ./server/middleware.ts:/app/middleware.ts
       - ./server/routes.json:/app/routes.json
-    command: json-server --watch db.json --routes routes.json
+    command: json-server --routes routes.json
